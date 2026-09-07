@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二维码生成器</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #FFE5E5, #E8D5F5, #D5E8F5);
+      padding: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 8px 40px rgba(180, 160, 200, 0.18);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #4A4A4A;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: #7A7A7A;
+      margin-bottom: 1.8rem;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 2px solid #E8D5F5;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+
+    input:focus {
+      border-color: #C9A0DC;
+    }
+
+    button {
+      padding: 0.75rem 1.25rem;
+      background: linear-gradient(135deg, #C9A0DC, #F5B0B0);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(201, 160, 220, 0.4);
+    }
+
+    #qrcode-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      min-height: 40px;
+    }
+
+    #qrcode-container canvas {
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(180, 160, 200, 0.15);
+    }
+
+    .download-btn {
+      display: none;
+      margin: 0 auto;
+      padding: 0.65rem 1.5rem;
+      background: linear-gradient(135deg, #B8D8F0, #D5B8F0);
+      font-size: 0.85rem;
+    }
+
+    .download-btn.show {
+      display: inline-block;
+    }
+
+    .hint {
+      font-size: 0.78rem;
+      color: #999;
+      margin-top: 1.2rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>&#128279; 二维码生成器</h1>
+    <p class="subtitle">输入你的 GitHub Pages 网址，生成扫码链接</p>
+
+    <div class="input-group">
+      <input type="url" id="url-input" placeholder="https://username.github.io/repo/" />
+      <button onclick="generateQR()">生成</button>
+    </div>
+
+    <div id="qrcode-container"></div>
+
+    <button class="download-btn" id="download-btn" onclick="downloadQR()">下载二维码图片</button>
+
+    <p class="hint">提示：将仓库推送到 GitHub 并开启 Pages 后，<br>把生成的网址粘贴到上方输入框即可。</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+  <script>
+    function generateQR() {
+      const url = document.getElementById('url-input').value.trim();
+      const container = document.getElementById('qrcode-container');
+      const downloadBtn = document.getElementById('download-btn');
+
+      if (!url) {
+        alert('请输入网址');
+        return;
+      }
+
+      if (!/^https?:\/\//i.test(url)) {
+        alert('请输入有效的网址（以 http:// 或 https:// 开头）');
+        return;
+      }
+
+      container.innerHTML = '';
+
+      QRCode.toCanvas(url, {
+        width: 240,
+        margin: 2,
+        color: {
+          dark: '#4A4A4A',
+          light: '#FFFFFF'
+        }
+      }, function (error, canvas) {
+        if (error) {
+          alert('生成失败，请检查网址');
+          return;
+        }
+        container.appendChild(canvas);
+        downloadBtn.classList.add('show');
+      });
+    }
+
+    function downloadQR() {
+      const canvas = document.querySelector('#qrcode-container canvas');
+      if (!canvas) return;
+
+      const link = document.createElement('a');
+      link.download = 'qrcode.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    document.getElementById('url-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') generateQR();
+    });
+  </script>
+</body>
+</html>

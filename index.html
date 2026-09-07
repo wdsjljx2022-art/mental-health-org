@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>心灵港湾 — 大学生心理健康中心</title>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --pink: #FFE5E5;
+      --lavender: #E8D5F5;
+      --sky: #D5E8F5;
+      --text: #4A4A4A;
+      --text-light: #7A7A7A;
+      --white: #FFFFFF;
+      --shadow: rgba(180, 160, 200, 0.15);
+      --accent: #C9A0DC;
+      --accent-warm: #F5B0B0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background: linear-gradient(180deg, var(--pink) 0%, var(--lavender) 40%, var(--sky) 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .nav.scrolled {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px var(--shadow);
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 0.75rem;
+      }
+      .nav-links a {
+        font-size: 0.78rem;
+      }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      overflow: hidden;
+    }
+
+    .hero-bubbles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.35;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .bubble:nth-child(1) {
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, #FFD1DC, transparent 70%);
+      top: 10%; left: -5%;
+      animation-duration: 9s;
+    }
+
+    .bubble:nth-child(2) {
+      width: 120px; height: 120px;
+      background: radial-gradient(circle, #D5B8F0, transparent 70%);
+      top: 20%; right: 5%;
+      animation-duration: 7s;
+      animation-delay: -2s;
+    }
+
+    .bubble:nth-child(3) {
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, #B8D8F0, transparent 70%);
+      bottom: 15%; left: 10%;
+      animation-duration: 11s;
+      animation-delay: -4s;
+    }
+
+    .bubble:nth-child(4) {
+      width: 90px; height: 90px;
+      background: radial-gradient(circle, #FFE0B2, transparent 70%);
+      bottom: 25%; right: 15%;
+      animation-duration: 8s;
+      animation-delay: -1s;
+    }
+
+    .bubble:nth-child(5) {
+      width: 150px; height: 150px;
+      background: radial-gradient(circle, #F0D5E8, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation-duration: 10s;
+      animation-delay: -3s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .hero-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero p {
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      color: var(--text-light);
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 20px rgba(201, 160, 220, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(201, 160, 220, 0.5);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s ease-in-out infinite;
+      color: var(--text-light);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .scroll-hint span {
+      display: block;
+      font-size: 1.2rem;
+      margin-top: 0.25rem;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 4rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-divider {
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+      border-radius: 2px;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-content {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 4px 30px var(--shadow);
+      line-height: 1.9;
+    }
+
+    .about-content p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .about-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1rem 0.5rem;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 16px;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-top: 0.25rem;
+    }
+
+    /* ===== DEPARTMENTS ===== */
+    .dept-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .dept-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 24px var(--shadow);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .dept-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 36px rgba(180, 160, 200, 0.22);
+    }
+
+    .dept-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .dept-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .dept-info {
+      flex: 1;
+    }
+
+    .dept-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+
+    .dept-brief {
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    .dept-arrow {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .dept-card.active .dept-arrow {
+      transform: rotate(180deg);
+    }
+
+    .dept-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+
+    .dept-card.active .dept-detail {
+      max-height: 300px;
+      padding-top: 1.2rem;
+    }
+
+    .dept-detail-inner {
+      padding-top: 1rem;
+      border-top: 1px solid rgba(200, 180, 220, 0.2);
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    .dept-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+
+    .dept-tag {
+      padding: 0.25rem 0.75rem;
+      background: rgba(201, 160, 220, 0.12);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Dept icon colors */
+    .dept-card:nth-child(1) .dept-icon { background: linear-gradient(135deg, #FFD5D5, #FFC1C1); }
+    .dept-card:nth-child(2) .dept-icon { background: linear-gradient(135deg, #E8D5F5, #D5B8F0); }
+    .dept-card:nth-child(3) .dept-icon { background: linear-gradient(135deg, #D5E8F5, #B8D8F0); }
+    .dept-card:nth-child(4) .dept-icon { background: linear-gradient(135deg, #FFE0B2, #FFD09B); }
+    .dept-card:nth-child(5) .dept-icon { background: linear-gradient(135deg, #D5F0E8, #B8E8D5); }
+    .dept-card:nth-child(6) .dept-icon { background: linear-gradient(135deg, #F0E0D5, #E8D0C0); }
+
+    /* ===== JOIN ===== */
+    .join-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 4px 30px var(--shadow);
+      text-align: center;
+    }
+
+    .join-card p {
+      font-size: 0.92rem;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .contact-item span:first-child {
+      font-size: 1.2rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.78rem;
+      color: var(--text-light);
+    }
+
+    footer .heart {
+      color: var(--accent-warm);
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 600px) {
+      .dept-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+
+      .dept-card.active .dept-detail {
+        max-height: 400px;
+      }
+    }
+
+    @media (min-width: 600px) {
+      .about-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo">&#10024; 心灵港湾</div>
+    <ul class="nav-links">
+      <li><a href="#about">关于</a></li>
+      <li><a href="#departments">部门</a></li>
+      <li><a href="#join">加入</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bubbles">
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+    </div>
+    <div class="hero-icon">&#127774;</div>
+    <h1>心灵港湾</h1>
+    <p>用温暖守护每一颗心灵，让关怀成为校园最美的风景</p>
+    <a href="#departments" class="hero-cta">了解我们的部门</a>
+    <div class="scroll-hint">
+      向下滑动
+      <span>&#8595;</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="fade-in">
+      <div class="section-divider"></div>
+      <h2 class="section-title">关于我们</h2>
+      <p class="section-subtitle">用爱与专业，守护校园心理健康</p>
+      <div class="about-content">
+        <p>
+          <strong>心灵港湾</strong>是致力于大学生心理健康服务的学生组织。我们相信，每一个人都值得被倾听、被理解、被关爱。
+        </p>
+        <p>
+          我们通过开展心理健康宣传活动、朋辈心理辅导、团体活动等方式，帮助同学们关注自身心理状态，营造温暖包容的校园氛围。
+        </p>
+        <p>
+          在这里，每一位成员都能收获成长、友谊与意义感。我们期待与你一起，让心理健康的阳光照进更多人的世界。
+        </p>
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-number">6</div>
+            <div class="stat-label">核心部门</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">活跃成员</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">30+</div>
+            <div class="stat-label">年度活动</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPARTMENTS -->
+  <section id="departments">
+    <div class="fade-in">
+      <div class="section-divider"></div>
+      <h2 class="section-title">部门介绍</h2>
+      <p class="section-subtitle">点击卡片查看部门详情</p>
+    </div>
+
+    <div class="dept-grid">
+
+      <div class="dept-card fade-in">
+        <div class="dept-header">
+          <div class="dept-icon">&#128151;</div>
+          <div class="dept-info">
+            <div class="dept-name">心理咨询部</div>
+            <div class="dept-brief">倾听心声，温暖陪伴</div>
+          </div>
+          <div class="dept-arrow">&#9660;</div>
+        </div>
+        <div class="dept-detail">
+          <div class="dept-detail-inner">
+            心理咨询部是组织中最核心的服务部门，负责为同学们提供朋辈心理支持服务。部门成员接受专业的倾听与沟通培训，定期值班接待来访同学，并组织心理健康主题沙龙和读书会。
+            <div class="dept-tags">
+              <span class="dept-tag">朋辈倾听</span>
+              <span class="dept-tag">心理沙龙</span>
+              <span class="dept-tag">主题读书会</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dept-card fade-in">
+        <div class="dept-header">
+          <div class="dept-icon">&#127881;</div>
+          <div class="dept-info">
+            <div class="dept-name">活动策划部</div>
+            <div class="dept-brief">创意无限，精彩不断</div>
+          </div>
+          <div class="dept-arrow">&#9660;</div>
+        </div>
+        <div class="dept-detail">
+          <div class="dept-detail-inner">
+            活动策划部负责设计和组织各类心理健康主题活动，包括5.25心理健康节、减压工作坊、正念冥想体验、校园心理剧大赛等。在这里，你的每一个创意都有机会变成现实。
+            <div class="dept-tags">
+              <span class="dept-tag">5.25心理节</span>
+              <span class="dept-tag">减压工作坊</span>
+              <span class="dept-tag">心理剧大赛</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dept-card fade-in">
+        <div class="dept-header">
+          <div class="dept-icon">&#128247;</div>
+          <div class="dept-info">
+            <div class="dept-name">新媒体宣传部</div>
+            <div class="dept-brief">用镜头和文字传递温暖</div>
+          </div>
+          <div class="dept-arrow">&#9660;</div>
+        </div>
+        <div class="dept-detail">
+          <div class="dept-detail-inner">
+            新媒体宣传部负责组织的品牌传播与内容运营，管理微信公众号、视频号等平台。部门涵盖文案撰写、平面设计、视频拍摄与剪辑等方向，是创意与表达的绝佳舞台。
+            <div class="dept-tags">
+              <span class="dept-tag">公众号运营</span>
+              <span class="dept-tag">平面设计</span>
+              <span class="dept-tag">视频创作</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dept-card fade-in">
+        <div class="dept-header">
+          <div class="dept-icon">&#128203;</div>
+          <div class="dept-info">
+            <div class="dept-name">组织部</div>
+            <div class="dept-brief">统筹协调，高效运转</div>
+          </div>
+          <div class="dept-arrow">&#9660;</div>
+        </div>
+        <div class="dept-detail">
+          <div class="dept-detail-inner">
+            组织部是组织运转的中枢，负责内部管理、成员培训、档案管理和活动后勤保障。部门成员将锻炼到出色的统筹协调能力和团队管理能力，是组织高效运作的坚实后盾。
+            <div class="dept-tags">
+              <span class="dept-tag">内部管理</span>
+              <span class="dept-tag">成员培训</span>
+              <span class="dept-tag">后勤保障</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dept-card fade-in">
+        <div class="dept-header">
+          <div class="dept-icon">&#129309;</div>
+          <div class="dept-info">
+            <div class="dept-name">外联部</div>
+            <div class="dept-brief">搭建桥梁，拓展资源</div>
+          </div>
+          <div class="dept-arrow">&#9660;</div>
+        </div>
+        <div class="dept-detail">
+          <div class="dept-detail-inner">
+            外联部负责与校内外机构建立合作关系，为组织活动争取赞助和资源支持。同时负责与其他高校心理类组织的交流联络，组织跨校合作活动，拓展成员的社交视野。
+            <div class="dept-tags">
+              <span class="dept-tag">赞助合作</span>
+              <span class="dept-tag">校际交流</span>
+              <span class="dept-tag">资源整合</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dept-card fade-in">
+        <div class="dept-header">
+          <div class="dept-icon">&#127793;</div>
+          <div class="dept-info">
+            <div class="dept-name">朋辈互助部</div>
+            <div class="dept-brief">同伴力量，共同成长</div>
+          </div>
+          <div class="dept-arrow">&#9660;</div>
+        </div>
+        <div class="dept-detail">
+          <div class="dept-detail-inner">
+            朋辈互助部专注于构建同学之间的支持网络，运营心理健康互助小组、主题分享会和成长训练营。通过同伴教育的方式，让更多同学在互助中找到归属感和成长力量。
+            <div class="dept-tags">
+              <span class="dept-tag">互助小组</span>
+              <span class="dept-tag">成长训练营</span>
+              <span class="dept-tag">同伴教育</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- JOIN -->
+  <section id="join">
+    <div class="fade-in">
+      <div class="section-divider"></div>
+      <h2 class="section-title">加入我们</h2>
+      <p class="section-subtitle">和我们一起，让温暖传递得更远</p>
+      <div class="join-card">
+        <p>
+          无论你是心理学专业还是其他院系，只要你关心心理健康、愿意帮助他人，我们都热烈欢迎你的加入！每学期初我们会面向全校招新，请关注我们的公众号获取最新信息。
+        </p>
+        <ul class="contact-list">
+          <li class="contact-item">
+            <span>&#128231;</span>
+            <span>邮箱：xinling@university.edu.cn</span>
+          </li>
+          <li class="contact-item">
+            <span>&#128241;</span>
+            <span>微信公众号：心灵港湾工作室</span>
+          </li>
+          <li class="contact-item">
+            <span>&#128205;</span>
+            <span>活动地点：学生活动中心 305室</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 心灵港湾 &middot; 大学生心理健康中心</p>
+    <p>用 <span class="heart">&hearts;</span> 守护每一颗心灵</p>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Department card accordion
+    document.querySelectorAll('.dept-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const isActive = card.classList.contains('active');
+        document.querySelectorAll('.dept-card').forEach(c => c.classList.remove('active'));
+        if (!isActive) {
+          card.classList.add('active');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
