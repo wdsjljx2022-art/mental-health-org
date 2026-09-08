@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>心灵港湾 — 大学生心理健康中心</title>
+  <title>微笑海豚训练营</title>
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -37,7 +37,6 @@
       overflow-x: hidden;
     }
 
-    /* ===== NAV ===== */
     .nav {
       position: fixed;
       top: 0;
@@ -97,15 +96,10 @@
     }
 
     @media (max-width: 600px) {
-      .nav-links {
-        gap: 0.75rem;
-      }
-      .nav-links a {
-        font-size: 0.78rem;
-      }
+      .nav-links { gap: 0.75rem; }
+      .nav-links a { font-size: 0.78rem; }
     }
 
-    /* ===== HERO ===== */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -177,9 +171,29 @@
     }
 
     .hero-icon {
-      font-size: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
       margin-bottom: 1rem;
       animation: pulse 3s ease-in-out infinite;
+    }
+
+    .hero-icon img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border-radius: 50%;
+      box-shadow: 0 4px 20px rgba(180, 160, 200, 0.25);
+      background: rgba(255, 255, 255, 0.5);
+      padding: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .hero-icon img {
+        width: 90px;
+        height: 90px;
+      }
     }
 
     @keyframes pulse {
@@ -245,7 +259,6 @@
       50% { transform: translateX(-50%) translateY(8px); }
     }
 
-    /* ===== SECTIONS ===== */
     section {
       padding: 4rem 1.5rem;
       max-width: 800px;
@@ -275,7 +288,6 @@
       margin: 0 auto 1.5rem;
     }
 
-    /* ===== ABOUT ===== */
     .about-content {
       background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(8px);
@@ -324,7 +336,6 @@
       margin-top: 0.25rem;
     }
 
-    /* ===== DEPARTMENTS ===== */
     .dept-grid {
       display: flex;
       flex-direction: column;
@@ -366,9 +377,7 @@
       flex-shrink: 0;
     }
 
-    .dept-info {
-      flex: 1;
-    }
+    .dept-info { flex: 1; }
 
     .dept-name {
       font-size: 1.05rem;
@@ -399,7 +408,7 @@
     }
 
     .dept-card.active .dept-detail {
-      max-height: 300px;
+      max-height: 500px;
       padding-top: 1.2rem;
     }
 
@@ -427,15 +436,11 @@
       font-weight: 500;
     }
 
-    /* Dept icon colors */
     .dept-card:nth-child(1) .dept-icon { background: linear-gradient(135deg, #FFD5D5, #FFC1C1); }
     .dept-card:nth-child(2) .dept-icon { background: linear-gradient(135deg, #E8D5F5, #D5B8F0); }
     .dept-card:nth-child(3) .dept-icon { background: linear-gradient(135deg, #D5E8F5, #B8D8F0); }
     .dept-card:nth-child(4) .dept-icon { background: linear-gradient(135deg, #FFE0B2, #FFD09B); }
-    .dept-card:nth-child(5) .dept-icon { background: linear-gradient(135deg, #D5F0E8, #B8E8D5); }
-    .dept-card:nth-child(6) .dept-icon { background: linear-gradient(135deg, #F0E0D5, #E8D0C0); }
 
-    /* ===== JOIN ===== */
     .join-card {
       background: rgba(255, 255, 255, 0.65);
       backdrop-filter: blur(8px);
@@ -473,7 +478,6 @@
       font-size: 1.2rem;
     }
 
-    /* ===== FOOTER ===== */
     footer {
       text-align: center;
       padding: 2rem 1.5rem;
@@ -485,7 +489,6 @@
       color: var(--accent-warm);
     }
 
-    /* ===== ANIMATIONS ===== */
     .fade-in {
       opacity: 0;
       transform: translateY(24px);
@@ -497,16 +500,14 @@
       transform: translateY(0);
     }
 
-    /* ===== RESPONSIVE ===== */
     @media (min-width: 600px) {
       .dept-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1.25rem;
       }
-
       .dept-card.active .dept-detail {
-        max-height: 400px;
+        max-height: 600px;
       }
     }
 
@@ -520,7 +521,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav-logo">&#10024; 微笑海豚训练营</div>
     <ul class="nav-links">
@@ -530,7 +530,6 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bubbles">
       <div class="bubble"></div>
@@ -539,7 +538,10 @@
       <div class="bubble"></div>
       <div class="bubble"></div>
     </div>
-    <div class="hero-icon">&#127774;</div>
+    <div class="hero-icon">
+      <img src="logo-dolphin.webp" alt="微笑海豚训练营">
+      <img src="logo-letter.webp" alt="朋辈信箱">
+    </div>
     <h1>微笑海豚训练营</h1>
     <p>用温暖守护每一颗心灵，让关怀成为校园最美的风景</p>
     <a href="#departments" class="hero-cta">了解我们的部门</a>
@@ -549,22 +551,15 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="fade-in">
       <div class="section-divider"></div>
       <h2 class="section-title">关于我们</h2>
       <p class="section-subtitle">用爱与专业，守护校园心理健康</p>
       <div class="about-content">
-        <p>
-          <strong>微笑海豚训练营</strong>是致力于大学生心理健康服务的学生组织。我们相信，每一个人都值得被倾听、被理解、被关爱。
-        </p>
-        <p>
-          我们通过开展心理健康宣传活动、朋辈心理辅导、团体活动等方式，帮助同学们关注自身心理状态，营造温暖包容的校园氛围。
-        </p>
-        <p>
-          在这里，每一位成员都能收获成长、友谊与意义感。我们期待与你一起，让心理健康的阳光照进更多人的世界。
-        </p>
+        <p><strong>微笑海豚训练营</strong>是致力于大学生心理健康服务的学生组织。我们相信，每一个人都值得被倾听、被理解、被关爱。</p>
+        <p>我们通过开展心理健康宣传活动、朋辈心理辅导、团体活动等方式，帮助同学们关注自身心理状态，营造温暖包容的校园氛围。</p>
+        <p>在这里，每一位成员都能收获成长、友谊与意义感。我们期待与你一起，让心理健康的阳光照进更多人的世界。</p>
         <div class="about-stats">
           <div class="stat-item">
             <div class="stat-number">4</div>
@@ -583,7 +578,6 @@
     </div>
   </section>
 
-  <!-- DEPARTMENTS -->
   <section id="departments">
     <div class="fade-in">
       <div class="section-divider"></div>
@@ -598,22 +592,19 @@
           <div class="dept-icon">&#128151;</div>
           <div class="dept-info">
             <div class="dept-name">素拓部</div>
-            <div class="dept-brief">倾听心声，温暖陪伴</div>
+            <div class="dept-brief">活力拓展，成长无限</div>
           </div>
           <div class="dept-arrow">&#9660;</div>
         </div>
         <div class="dept-detail">
           <div class="dept-detail-inner">
-            <p>
-              微笑海豚训练营里最有特色、最有活力的部门，核心工作围绕着设计和组织各种素质拓展活动展开，在给大家带来欢乐的同时，提升大家的心理素质和实践能力。
-            </p>
-            <p>
-              加入素拓部，亲手设计活动，锻炼自己的策划能力和协调能力，认识一群志同道合的伙伴，一起在欢笑中为校园心理健康建设添砖加瓦
-            </p>
+            微笑海豚训练营里最有特色、最有活力的部门，核心工作围绕着设计和组织各种素质拓展活动展开，在给大家带来欢乐的同时，提升大家的心理素质和实践能力。
+            <br><br>
+            加入素拓部，亲手设计活动，锻炼自己的策划能力和协调能力，认识一群志同道合的伙伴，一起在欢笑中为校园心理健康建设添砖加瓦。
             <div class="dept-tags">
-              <span class="dept-tag">朋辈倾听</span>
-              <span class="dept-tag">心理沙龙</span>
-              <span class="dept-tag">主题读书会</span>
+              <span class="dept-tag">素质拓展</span>
+              <span class="dept-tag">活动策划</span>
+              <span class="dept-tag">团队协作</span>
             </div>
           </div>
         </div>
@@ -624,22 +615,19 @@
           <div class="dept-icon">&#127881;</div>
           <div class="dept-info">
             <div class="dept-name">朋辈部</div>
-            <div class="dept-brief">创意无限，精彩不断</div>
+            <div class="dept-brief">同伴力量，心灵共鸣</div>
           </div>
           <div class="dept-arrow">&#9660;</div>
         </div>
         <div class="dept-detail">
           <div class="dept-detail-inner">
-            <p>
-              微笑海豚训练营的组织特色之一，致力于为你打造心灵的归宿，在朋辈互助中感受关怀，收获力量，滋养灵魂。
-            </p>
-            <p>
-              在朋辈信箱，以同龄人的温度和共鸣，用热心温暖他人的灵魂；在朋辈成长小组，和心理委员一起成长；举办海豚观影，汲取关于人性、情感与成长的深层思考。同时，神秘的OH卡体验和更多精彩的新活动也在等着你探索。
-            </p>
+            微笑海豚训练营的组织特色之一，致力于为你打造心灵的归宿，在朋辈互助中感受关怀，收获力量，滋养灵魂。
+            <br><br>
+            在朋辈信箱，以同龄人的温度和共鸣，用热心温暖他人的灵魂；在朋辈成长小组，和心理委员一起成长；举办海豚观影，汲取关于人性、情感与成长的深层思考。同时，神秘的OH卡体验和更多精彩的新活动也在等着你探索。
             <div class="dept-tags">
-              <span class="dept-tag">5.25心理节</span>
-              <span class="dept-tag">减压工作坊</span>
-              <span class="dept-tag">心理剧大赛</span>
+              <span class="dept-tag">朋辈信箱</span>
+              <span class="dept-tag">海豚观影</span>
+              <span class="dept-tag">OH卡体验</span>
             </div>
           </div>
         </div>
@@ -656,15 +644,11 @@
         </div>
         <div class="dept-detail">
           <div class="dept-detail-inner">
-            <p>
-              微笑海豚的“创意发动机” 。
-            </p>
-            <p>
-              这里是故事发生的第一现场，也是创意翻涌的快乐基地！我们负责用图文、设计和创意，把每一次活动的精彩传递到校园的角落！
-            </p>
-            <p>
-              如果你爱表达、有想法、乐于创造，欢迎加入我们，一起做心理健康活动的“代言人”，用灵感照亮更多人的微笑！
-            </p>
+            微笑海豚的"创意发动机"。
+            <br><br>
+            这里是故事发生的第一现场，也是创意翻涌的快乐基地！我们负责用图文、设计和创意，把每一次活动的精彩传递到校园的角落！
+            <br><br>
+            如果你爱表达、有想法、乐于创造，欢迎加入我们，一起做心理健康活动的"代言人"，用灵感照亮更多人的微笑！
             <div class="dept-tags">
               <span class="dept-tag">公众号运营</span>
               <span class="dept-tag">平面设计</span>
@@ -685,12 +669,9 @@
         </div>
         <div class="dept-detail">
           <div class="dept-detail-inner">
-            <p>
-              欢迎来到温暖有爱的办公室！这里不仅是各项工作的幕后英雄，更是团队中最不可或缺的“润滑剂”。加入我们，你将体验到满满的成就感和团队氛围！
-            </p>
-            <p>
-              每一场会议内容，由我们记录；每一次活动后勤，由我们保障；每一位小海豚的热情付出，由我们见证；每一份小海豚的崇高荣誉，由我们送达！
-            </p>
+            欢迎来到温暖有爱的办公室！这里不仅是各项工作的幕后英雄，更是团队中最不可或缺的"润滑剂"。加入我们，你将体验到满满的成就感和团队氛围！
+            <br><br>
+            每一场会议内容，由我们记录；每一次活动后勤，由我们保障；每一位小海豚的热情付出，由我们见证；每一份小海豚的崇高荣誉，由我们送达！
             <div class="dept-tags">
               <span class="dept-tag">内部管理</span>
               <span class="dept-tag">成员培训</span>
@@ -699,10 +680,10 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- JOIN -->
   <section id="join">
     <div class="fade-in">
       <div class="section-divider"></div>
@@ -710,10 +691,10 @@
       <p class="section-subtitle">和我们一起，让温暖传递得更远</p>
       <div class="join-card">
         <p>
-          欢迎成为小海豚！  
-如果你也愿意尝试倾听、乐于分享，期待学习心理知识、锻炼自己，或者单纯想找到一个有爱有趣的集体——BIT微笑海豚训练营欢迎你的加入！ 
-在这里，你能收获的不仅是能力，还有一群可以一起前进的朋友。
-很高兴与你相遇，期待在这片海洋，一起见证温暖与成长。
+          欢迎成为小海豚！<br>
+          如果你也愿意尝试倾听、乐于分享，期待学习心理知识、锻炼自己，或者单纯想找到一个有爱有趣的集体——BIT微笑海豚训练营欢迎你的加入！<br>
+          在这里，你能收获的不仅是能力，还有一群可以一起前进的朋友。<br>
+          很高兴与你相遇，期待在这片海洋，一起见证温暖与成长。
         </p>
         <ul class="contact-list">
           <li class="contact-item">
@@ -733,20 +714,17 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <p>&copy; 2026 微笑海豚训练营 &middot; 大学生心理健康中心</p>
     <p>用 <span class="heart">&hearts;</span> 守护每一颗心灵</p>
   </footer>
 
   <script>
-    // Nav scroll effect
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    // Scroll fade-in
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -757,7 +735,6 @@
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Department card accordion
     document.querySelectorAll('.dept-card').forEach(card => {
       card.addEventListener('click', () => {
         const isActive = card.classList.contains('active');
