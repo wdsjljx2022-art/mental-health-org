@@ -441,6 +441,76 @@
     .dept-card:nth-child(3) .dept-icon { background: linear-gradient(135deg, #D5E8F5, #B8D8F0); }
     .dept-card:nth-child(4) .dept-icon { background: linear-gradient(135deg, #FFE0B2, #FFD09B); }
 
+    /* ===== LEADERS ===== */
+    .leader-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .leader-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 24px var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .leader-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 20px rgba(180, 160, 200, 0.25);
+      border: 3px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .leader-info {
+      text-align: center;
+      width: 100%;
+    }
+
+    .leader-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 0.2rem;
+    }
+
+    .leader-title {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .leader-message {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.8;
+      text-align: left;
+      padding: 0 0.5rem;
+    }
+
+    @media (min-width: 600px) {
+      .leader-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.25rem;
+      }
+
+      .leader-card {
+        flex-direction: column;
+      }
+    }
+
     .join-card {
       background: rgba(255, 255, 255, 0.65);
       backdrop-filter: blur(8px);
@@ -526,6 +596,7 @@
     <ul class="nav-links">
       <li><a href="#about">关于</a></li>
       <li><a href="#departments">部门</a></li>
+      <li><a href="#leaders">部长团</a></li>
       <li><a href="#join">加入</a></li>
     </ul>
   </nav>
@@ -678,6 +749,118 @@
               <span class="dept-tag">后勤保障</span>
             </div>
           </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LEADERS -->
+  <section id="leaders">
+    <div class="fade-in">
+      <div class="section-divider"></div>
+      <h2 class="section-title">部长团</h2>
+      <p class="section-subtitle">认识我们的11位核心成员</p>
+    </div>
+
+    <div class="leader-grid">
+
+      <div class="leader-card fade-in">
+        <img class="leader-photo" src="leader1.webp" alt="曾杨俊杰">
+        <div class="leader-info">
+          <div class="leader-name">曾杨俊杰</div>
+          <div class="leader-title">2025级 特立书院 · 营长</div>
+          <div class="leader-message">微笑海豚训练营欢迎每一个愿意交朋友，愿意共同维护大家心理健康的同学，欢迎大家踊跃参与！</div>
+        </div>
+      </div>
+
+      <div class="leader-card fade-in">
+        <img class="leader-photo" src="leader2.webp" alt="李泓伯">
+        <div class="leader-info">
+          <div class="leader-name">李泓伯</div>
+          <div class="leader-title">2024级 明德书院 · 办公室与宣传部分管副营长</div>
+          <div class="leader-message">长风涤尽尘间烦扰，流云散尽眼底风霜。且抛此身万般牵绊，共揽山河十里晴光。</div>
+        </div>
+      </div>
+
+      <div class="leader-card fade-in">
+        <img class="leader-photo" src="leader3.webp" alt="刘君豪">
+        <div class="leader-info">
+          <div class="leader-name">刘君豪</div>
+          <div class="leader-title">2024级 明德书院 · 素拓部与朋辈部分管副营长</div>
+          <div class="leader-message">抬起头，继续前进吧，去把这个不完美的故事变成你所期望的样子！</div>
+        </div>
+      </div>
+
+      <div class="leader-card fade-in">
+        <img class="leader-photo" src="leader4.webp" alt="郑栩婷">
+        <div class="leader-info">
+          <div class="leader-name">郑栩婷</div>
+          <div class="leader-title">2025级 明德书院 · 素拓部部长</div>
+          <div class="leader-message">性格温柔坚定、务实热忱。喜欢历史，针灸和美食！</div>
+        </div>
+      </div>
+
+      <div class="leader-card fade-in">
+        <img class="leader-photo" src="leader5.webp" alt="李知谦">
+        <div class="leader-info">
+          <div class="leader-name">李知谦</div>
+          <div class="leader-title">2025级 特立书院 · 素拓部副部长</div>
+          <div class="leader-message">务实且热忱，期待在新一届继续发光发热</div>
+        </div>
+      </div>
+
+      <div class="leader-card fade-in">
+        <img class="leader-photo" src="leader6.webp" alt="王咏佳">
+        <div class="leader-info">
+          <div class="leader-name">王咏佳</div>
+          <div class="leader-title">2025级 明德书院 · 朋辈部部长</div>
+          <div class="leader-message">叮咚！你的大学成长搭子已上线！在训练营，我们不搞"内卷"，只搞"成长"：一起解锁新技能，一起策划超酷的活动，一起在试错里变得越来越厉害！</div>
+        </div>
+      </div>
+
+      <div class="leader-card fade-in">
+        <img class="leader-photo" src="leader7.webp" alt="董思言">
+        <div class="leader-info">
+          <div class="leader-name">董思言</div>
+          <div class="leader-title">2025级 特立书院 · 朋辈部副部长</div>
+          <div class="leader-message">就像星星汇聚才能点亮夜空，每一份微小的参与，都能让我们成为彼此的光。期待和大家一起，在交流里收获温暖，在陪伴中共同成长。</div>
+        </div>
+      </div>
+
+      <div class="leader-card fade-in">
+        <img class="leader-photo" src="leader8.webp" alt="杨睿">
+        <div class="leader-info">
+          <div class="leader-name">杨睿</div>
+          <div class="leader-title">2025级 特立书院 · 朋辈部副部长</div>
+          <div class="leader-message">作为联结心理委员与全体同学的暖心纽带，朋辈部邀你加入微笑海豚训练营，结识志同道合的伙伴，疗愈内心、丰盈自我。</div>
+        </div>
+      </div>
+
+      <div class="leader-card fade-in">
+        <img class="leader-photo" src="leader9.webp" alt="韩欣睿">
+        <div class="leader-info">
+          <div class="leader-name">韩欣睿</div>
+          <div class="leader-title">2025级 特立书院 · 办公室部长</div>
+          <div class="leader-message">海豚逐浪，微笑向阳，期待和大家一起见证更多奇迹！</div>
+        </div>
+      </div>
+
+      <div class="leader-card fade-in">
+        <img class="leader-photo" src="leader10.webp" alt="王佳琳">
+        <div class="leader-info">
+          <div class="leader-name">王佳琳</div>
+          <div class="leader-title">2025级 特立书院 · 办公室副部长</div>
+          <div class="leader-message">欢迎大家加入微笑海豚训练营，在这里收获友谊和快乐</div>
+        </div>
+      </div>
+
+      <div class="leader-card fade-in">
+        <img class="leader-photo" src="leader12.webp" alt="李嘉轩">
+        <div class="leader-info">
+          <div class="leader-name">李嘉轩</div>
+          <div class="leader-title">2024级 睿信书院 · 宣传部部长</div>
+          <div class="leader-message">我们因热爱而相聚，因责任而坚守。未来的日子里，愿我们继续并肩作战，把平凡的日常做成不平凡的推送，把微小的感动放大成温暖的力量。</div>
         </div>
       </div>
 
